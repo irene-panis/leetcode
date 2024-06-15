@@ -5,12 +5,13 @@
 var isPalindrome = function(s) {
     let l = 0;
     let r = s.length - 1;
+
     while (l < r) {
         while (l < r && !isAlphaNum(s[l])) {
-            l++; // continue if current char != alphanum
+            l++;
         }
         while (r > l && !isAlphaNum(s[r])) {
-            r--; // continue if current char != alphanum
+            r--;
         }
         if (s[l].toLowerCase() !== s[r].toLowerCase()) {
             return false;
@@ -21,7 +22,7 @@ var isPalindrome = function(s) {
     return true;
 }
 
-var isAlphaNum = function(c) {
+var isAlphaNum = function(c) { // func for checking if character is alphanumeric Aa-Zz 0-9
     const charCode = c.charCodeAt(0);
     return (
         (65 <= charCode && charCode <= 90) ||
