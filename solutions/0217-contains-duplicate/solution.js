@@ -3,12 +3,12 @@
  * @return {boolean}
  */
 var containsDuplicate = function(nums) {
-    let mp = new Map();
-    for (let i = 0; i < nums.length; i++) {
-        if (mp.has(nums[i])) {
-            return true;
-        }
-        mp.set(nums[i], i);
+    const seen = new Map();
+
+    for (const num of nums) {
+        if (seen.has(num)) return true;
+        seen.set(num, true);
     }
+
     return false;
 };
