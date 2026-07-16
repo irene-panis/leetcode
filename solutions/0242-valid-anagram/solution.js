@@ -4,19 +4,22 @@
  * @return {boolean}
  */
 var isAnagram = function(s, t) {
-    if (s.length !== t.length) {
-        return false;
+    if (s.length !== t.length) return false;
+
+    const wordOne = new Map();
+    const wordTwo = new Map();
+
+    for (const letter of s) {
+        wordOne.set(letter, (wordOne.get(letter) ?? 0) + 1);
     }
-    sCount = {};
-    tCount = {};
-    for (let i = 0; i < s.length; i++) {
-        sCount[s[i]] = (sCount[s[i]] + 1) || 0;
-        tCount[t[i]] = (tCount[t[i]] + 1) || 0;
+
+    for (const letter of t) {
+        wordTwo.set(letter, (wordTwo.get(letter) ?? 0) + 1);
     }
-    for (const key in sCount) {
-        if (sCount[key] !== tCount[key]) {
-            return false;
-        }
+
+    for (const [letter, count] of wordOne) {
+        if (wordOne.get(letter) !== wordTwo.get(letter)) return false;
     }
+
     return true;
 };
