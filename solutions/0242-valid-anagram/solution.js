@@ -16,9 +16,7 @@ var isAnagram = function(s, t) {
     }
 
     for (const [letter] of sMap.entries()) {
-        if (sMap.get(letter) !== tMap.get(letter)) {
-            return false;
-        }
+        if (sMap.get(letter) !== tMap.get(letter)) return false;
     }
     return true;
 };
