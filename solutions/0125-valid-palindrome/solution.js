@@ -2,31 +2,29 @@
  * @param {string} s
  * @return {boolean}
  */
-var isPalindrome = function(s) {
-    let l = 0;
-    let r = s.length - 1;
-
-    while (l < r) {
-        while (l < r && !isAlphaNum(s[l])) {
-            l++;
-        }
-        while (r > l && !isAlphaNum(s[r])) {
-            r--;
-        }
-        if (s[l].toLowerCase() !== s[r].toLowerCase()) {
-            return false;
-        }
-        l++;
-        r--;
-    }
-    return true;
-}
-
-var isAlphaNum = function(c) { // func for checking if character is alphanumeric Aa-Zz 0-9
-    const charCode = c.charCodeAt(0);
+var isAlphanumeric = function(c) {
     return (
-        (65 <= charCode && charCode <= 90) ||
-        (97 <= charCode && charCode <= 122) ||
-        (48 <= charCode && charCode <= 57)
+        (c >= "a" && c <= "z") ||
+        (c >= "A" && c <= "Z") ||
+        (c >= "0" && c <= "9") 
     );
 }
+
+var isPalindrome = function(s) {
+    let left = 0;
+    let right = s.length - 1;
+    while (left < right) {
+        while (left < right && !isAlphanumeric(s[left])) {
+            left++;
+        }
+        while (right > left && !isAlphanumeric(s[right])) {
+            right--;
+        }
+        if (s[left].toLowerCase() !== s[right].toLowerCase()) {
+            return false;
+        }
+        left++;
+        right--;
+    }
+    return true;
+};
