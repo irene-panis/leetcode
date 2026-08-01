@@ -5,18 +5,19 @@
  */
 var isAnagram = function(s, t) {
     if (s.length !== t.length) return false;
-    const sMap = new Map();
-    const tMap = new Map();
+
+    const sCounts = new Map();
+    const tCounts = new Map();
 
     for (const letter of s) {
-        sMap.set(letter, (sMap.get(letter) ?? 0) + 1);
+        sCounts.set(letter, (sCounts.get(letter) ?? 0) + 1);
     }
     for (const letter of t) {
-        tMap.set(letter, (tMap.get(letter) ?? 0) + 1);
+        tCounts.set(letter, (tCounts.get(letter) ?? 0) + 1);
     }
 
-    for (const [letter] of sMap.entries()) {
-        if (sMap.get(letter) !== tMap.get(letter)) return false;
+    for (const [letter] of sCounts.entries()) {
+        if (sCounts.get(letter) !== tCounts.get(letter)) return false;
     }
     return true;
 };
