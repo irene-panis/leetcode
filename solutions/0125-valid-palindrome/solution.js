@@ -6,25 +6,22 @@ var isAlphanumeric = function(c) {
     return (
         (c >= "a" && c <= "z") ||
         (c >= "A" && c <= "Z") ||
-        (c >= "0" && c <= "9") 
+        (c >= "0" && c <= "9")
     );
 }
-
 var isPalindrome = function(s) {
-    let left = 0;
-    let right = s.length - 1;
-    while (left < right) {
-        while (left < right && !isAlphanumeric(s[left])) {
-            left++;
+    let l = 0;
+    let r = s.length - 1;
+    while (l < r) {
+        while (l < r && !isAlphanumeric(s[l])) {
+            l++;
         }
-        while (right > left && !isAlphanumeric(s[right])) {
-            right--;
+        while (r > l && !isAlphanumeric(s[r])) {
+            r--;
         }
-        if (s[left].toLowerCase() !== s[right].toLowerCase()) {
-            return false;
-        }
-        left++;
-        right--;
+        if (s[l].toLowerCase() !== s[r].toLowerCase()) return false;
+        l++;
+        r--;
     }
     return true;
 };
