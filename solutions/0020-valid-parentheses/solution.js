@@ -4,12 +4,12 @@
  */
 var isValid = function(s) {
     const stack = [];
-    const hash = { '(': ')', '[': ']', '{': '}'}; // matching pairs
-    for (let i = 0; i < s.length; i++) {
-        if (s[i] === '[' || s[i] === '(' || s[i] === '{') {
-            stack.push(s[i]);
-        } else if (hash[stack.pop()] !== s[i]) {
-            return false;
+    const hash = { '(': ')', '{': '}', '[': ']'}
+    for (const ch of s) {
+        if (ch == '(' || ch == '[' || ch == '{') {
+            stack.push(ch);
+        } else {
+            if (hash[stack.pop()] !== ch) return false;
         }
     }
     return stack.length === 0;
