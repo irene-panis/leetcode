@@ -4,27 +4,13 @@
  */
 var isValid = function(s) {
     const stack = [];
-    const map = {
-        '}': '{',
-        ']': '[',
-        ')': '(',
-    };
-
-    for (const char of s) {
-        const isBracket = char in map;
-        if (!isBracket) {
-            stack.push(char);
-            continue;
+    const hash = { '(': ')', '[': ']', '{': '}'}; // matching pairs
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] === '[' || s[i] === '(' || s[i] === '{') {
+            stack.push(s[i]);
+        } else if (hash[stack.pop()] !== s[i]) {
+            return false;
         }
-
-        const isEqual = stack[stack.length - 1] === map[char];
-        if (isEqual) {
-            stack.pop();
-            continue;
-        }
-
-        return false;
     }
-
     return stack.length === 0;
 };
