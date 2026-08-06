@@ -3,16 +3,20 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    let min = prices[0];
-    let max = min;
-    let value = 0;
-    for (let i = 0; i < prices.length; i++) {
-        if (i != prices.length - 1 && prices[i] <= min) {
-            min = max = prices[i];
-        } else if (prices[i] > max) {
-            max = prices[i];
+    let l = 0;
+    let r = 1;
+    let max = 0;
+    while (r < prices.length) {
+        // profitable?
+        if (prices[l] < prices[r]) {
+            const profit = prices[r] - prices[l];
+            if (profit > max) {
+                max = profit;
+            }
+        } else {
+            l = r; // found new low
         }
-        value = max - min > value ? max - min : value;
+        r++;
     }
-    return value;
+    return max;
 };
