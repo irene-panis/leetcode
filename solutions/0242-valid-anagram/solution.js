@@ -5,17 +5,17 @@
  */
 var isAnagram = function(s, t) {
     if (s.length !== t.length) return false;
-    const sMap = new Map();
-    const tMap = new Map();
+    let sMap = new Map();
+    let tMap = new Map();
 
     for (const letter of s) {
-        sMap.set(letter, (sMap.get(letter) ?? 0) + 1);
+        sMap.set(letter, ((sMap.get(letter) ?? 0) + 1));
     }
     for (const letter of t) {
-        tMap.set(letter, (tMap.get(letter) ?? 0) + 1);
+        tMap.set(letter, ((tMap.get(letter) ?? 0) + 1));
     }
 
-    for (const [letter] of sMap.entries()) {
+    for (const letter of s) {
         if (sMap.get(letter) !== tMap.get(letter)) {
             return false;
         }
